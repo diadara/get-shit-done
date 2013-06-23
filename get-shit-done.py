@@ -15,7 +15,7 @@ ini_local = path.expanduser(path.join("~", ".config/get-shit-done.ini"))
 ini_global = './sites.ini'
 
 if "linux" in sys.platform:
-    restart_network_command = ["/etc/init.d/networking", "restart"]
+    restart_network_command = ["systemctl", "restart","wicd"]
 elif "darwin" in sys.platform:
     restart_network_command = ["dscacheutil", "-flushcache"]
 elif "win32" in sys.platform:
@@ -98,7 +98,7 @@ def main():
     try:
         {"work": work, "play": play}[sys.argv[1]]()
     except KeyError:
-        exit_error('usage: ' + sys.argv[0] + ' [work|play]')	
+        exit_error('usage: ' + sys.argv[0] + ' [work|play]')
 
 if __name__ == "__main__":
     main()
